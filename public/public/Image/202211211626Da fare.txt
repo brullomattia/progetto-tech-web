@@ -1,0 +1,4 @@
+-rinominare tutto in front_campaigns
+- e front_applicants
+-slug su campaign 
+-immagini
