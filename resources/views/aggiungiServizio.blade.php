@@ -1,4 +1,9 @@
-<?php $posts=App\Models\Post::all();?>
+<?php $posts=App\Models\Post::all();
+$user = (Auth::User())->toArray();
+$name = Auth::user()->username;
+$email = Auth::user()->email;
+?>
+
 <x-layout>
 
     <!doctype html>
@@ -80,8 +85,17 @@
                                 </p>
                                 
                                 <p class="formP" > Email
-                                    <input type="text"  name="email">
+                                    <input type="text"  name="email"  value="{{ $email }}">
                                 </p>
+                                <p class="formP" > nome
+                                    <input type="text"  name="nome"  value="{{ $name }}">
+                                </p>
+                                <p class="formP" > Una immagine (facoltativa)
+                                <input type="file"  name="immagine" accept="image/png, image/jpeg">
+
+                                </p>
+
+
                                 <p class="formP"  > Descrizione
                                 <textarea id="descrizione"  rows="4" cols="50" name="descrizione">
 
@@ -109,13 +123,16 @@
     </body>
 </x-layout>
 <script>
+  
    async function creaServizio() {
+
             let tipologia = document.forms[1].elements["tipologia"].value;
             let email = document.forms[1].elements["email"].value;
             let telefono = document.forms[1].elements["telefono"].value;
             let descrizione = document.forms[1].elements["descrizione"].value;
+            let nome = document.forms[1].elements["nome"].value;
 
-            if((telefono=="")||(email=="")||(descrizione=="")){
+            if((telefono=="")||(email=="")||(descrizione=="")||(nome=="")){
                 alert (" Attenzione!\n Per inviare una proposta di servizio \n è necessario compilare tutti i campi");  
 
             }
@@ -127,7 +144,7 @@
             else{
                 document.getElementById('formSection').style.backgroundColor  ="lightgreen";
                 document.getElementById('formSection').innerHTML = "<p id='dopoInvio'> La  proposta è stata inviata correttamente! </p>"
-                console.log('descrizione ='+descrizione+'telefono ='+telefono+'email ='+email+'tipologia ='+tipologia);
+                console.log('descrizione ='+descrizione+'telefono ='+telefono+'email ='+email+'tipologia ='+tipologia+'nome ='+nome);
 
                 console.log('validatePhoneNumber(telefono)=  '+ validatePhoneNumber(telefono));
             }

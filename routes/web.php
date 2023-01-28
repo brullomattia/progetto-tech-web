@@ -36,6 +36,10 @@ Route::get('/animal_video', [GameController::class, 'animal_video'])->name('anim
 Route::get('/register', [RegisterController::class, 'create'])->name('register')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store')->middleware('guest');
 
+//route for creating a service
+Route::get('/service', [ServiceController::class, 'create'])->name('service')->middleware('auth');
+Route::post('/service', [ServiceController::class, 'store'])->name('service.store')->middleware('auth');
+
 Route::get('/login', [SessionController::class, 'create'])->name('login')->middleware('guest');
 Route::post('login', [SessionController::class, 'store'])->name('login.store')->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
