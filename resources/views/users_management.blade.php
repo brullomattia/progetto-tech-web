@@ -61,13 +61,3 @@
     </body>
 </x-layout>
 
-<style>
-  
-    
-        #list {
-        
-        }
-
-
-
-</style>
