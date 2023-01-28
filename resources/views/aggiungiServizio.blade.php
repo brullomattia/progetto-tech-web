@@ -54,64 +54,44 @@ $email = Auth::user()->email;
 
                         
                             In questa pagina è possibile condividere immagini e aneddoti riguardanti gli animali con gli altri utenti del portale, apprestati a dire la tua!
-                        </div>
-
-                        <div id = "image2" class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                            <img src="https://www.crownfrenchfurniture.co.uk/media/catalog/product/cache/eb2ff8990549e78d94590201ad29eed1/l/o/louis_french_showcase_with_cupboard.jpg" alt="" class="rounded-xl">
-
-                        </div>
+                        </div>             
                         
-                        <div id = "text2" class="space-y-4 lg:text-lg leading-loose">
-                            <h1 class="font-semi-bold text-3xl lg:text-4xl mb-10">
-                                Bacheca Animal House
-                            </h1>
-
-                        
-                            In questa pagina è possibile condividere immagini e aneddoti riguardanti gli animali con gli altri utenti del portale, apprestati a dire la tua!
-                        </div>
                         <section id="formSection" class="col-span-12 mx-2.5">
-                        @auth
-                           <form>
-                                
+                            
+                        
+                           <form action="{{ route('service.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <p class="formP" > Tipologia
-                                    <select name="tipologia"> 
-                                        <option value="Dog Sitter">Dog sitter</option>
-                                        <option value="Pensione Estiva">Pensione estiva</option>
-                                        <option value="Visita A Domicilio">Visita a domicilio per animali soli</option>
+                                    <select required name="type"> 
+                                        <option value="dog_sitter">Dog sitter</option>
+                                        <option value="dogs_pension">Pensione estiva</option>
+                                        <option value="home_visit">Visita a domicilio per animali soli</option>
                                     </select>
                                 </p>
                                 <p class="formP" > Numero di telefono
-                                    <input type="tel" name="telefono">
+                                    <input name="tel" required >
                                 </p>
                                 
                                 <p class="formP" > Email
-                                    <input type="text"  name="email"  value="{{ $email }}">
+                                    <input required type="email"  name="email"  value="{{ $email }}">
                                 </p>
-                                <p class="formP" > nome
-                                    <input type="text"  name="nome"  value="{{ $name }}">
+                                <p class="formP" > Nome
+                                    <input required type="text"  name="nome"  value="{{ $name }}">
                                 </p>
-                                <p class="formP" > Una immagine (facoltativa)
-                                <input type="file"  name="immagine" accept="image/png, image/jpeg">
+                                <p  required class="formP" > Una immagine (facoltativa)
+                                <input required type="file"  name="image" accept="image/png, image/jpeg">
 
                                 </p>
 
-
+                                
                                 <p class="formP"  > Descrizione
-                                <textarea id="descrizione"  rows="4" cols="50" name="descrizione">
-
-                                </textarea>
+                                    <textarea required name="description" rows="5" class="w-full text-sm" placeholder="Scrivi una descrizione..."></textarea>
+                                    
                                    
                                 </p>
-
- 
-
-
-                           </form>
-                            <button id="invia" onclick="creaServizio()"> invia</button>
-                          
-                        @endauth
-                        
-                    </section>
+                                <button id="invia" type="submit" onclick=""> Invia</button>
+                            </form>
+                        </section>
                     </div>
 
                     
@@ -124,37 +104,19 @@ $email = Auth::user()->email;
 </x-layout>
 <script>
   
-   async function creaServizio() {
+   async function showIsOk() {
 
-            let tipologia = document.forms[1].elements["tipologia"].value;
-            let email = document.forms[1].elements["email"].value;
-            let telefono = document.forms[1].elements["telefono"].value;
-            let descrizione = document.forms[1].elements["descrizione"].value;
-            let nome = document.forms[1].elements["nome"].value;
-
-            if((telefono=="")||(email=="")||(descrizione=="")||(nome=="")){
-                alert (" Attenzione!\n Per inviare una proposta di servizio \n è necessario compilare tutti i campi");  
-
-            }
-            else{
-            if(!validatePhoneNumber(telefono)){
-                alert (" Attenzione!\n il numero di telefono inserito non è valido");  
-
-            }
-            else{
+           
+            
                 document.getElementById('formSection').style.backgroundColor  ="lightgreen";
                 document.getElementById('formSection').innerHTML = "<p id='dopoInvio'> La  proposta è stata inviata correttamente! </p>"
                 console.log('descrizione ='+descrizione+'telefono ='+telefono+'email ='+email+'tipologia ='+tipologia+'nome ='+nome);
 
                 console.log('validatePhoneNumber(telefono)=  '+ validatePhoneNumber(telefono));
-            }
+            
         }
         
-        }
-        function validatePhoneNumber(input_str) {
-            var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
-            return re.test(input_str);
-        }
+        
 
 
 </script>
