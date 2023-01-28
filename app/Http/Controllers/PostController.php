@@ -36,7 +36,7 @@ class PostController extends Controller
     
             $post?->delete();
     
-            return redirect()->route('showShowcase');;
+            return redirect()->route('');;
         }
 
         

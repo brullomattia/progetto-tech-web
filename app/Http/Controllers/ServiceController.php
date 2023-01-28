@@ -37,6 +37,16 @@ class ServiceController extends Controller
 
         $service?->delete();
 
-        return redirect()->route('showShowcase');;
+        return redirect()->route('');;
+    }
+
+    public function approve($id){
+        $service = Service::find($id);
+        if($service != null){
+            $service->approved = true ;
+        }
+        
+
+        return redirect()->route('');;
     }
 }

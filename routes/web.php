@@ -68,6 +68,7 @@ Route::post('/delete/{id}',[PostController::class,'delete'])->name('post.delete'
 
 Route::post('/store_service',[ServiceController::class,'store'])->name('service.store');
 Route::post('/delete/{id}',[ServiceController::class,'delete'])->name('service.delete');
+Route::post('/approve/{id}',[ServiceController::class,'approve'])->name('service.approve');
 
 Route::middleware([
     'auth:sanctum',

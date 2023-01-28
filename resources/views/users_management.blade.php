@@ -18,7 +18,7 @@
 
                     <div class="col-span-8">
                         <div class="hidden lg:flex justify-between mb-6">
-                            <a href="/home_front"
+                            <a href="/home_admin"
                                 class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
                                 <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
                                 <g fill="none" fill-rule="evenodd">
@@ -30,7 +30,7 @@
                                     </g>
                                 </svg>
 
-                                Back to HomeFront Page
+                                Back to Home Admin Page
                             </a>
 
                           
@@ -44,8 +44,11 @@
                            
                             <div class="lg:grid lg:grid-cols-1 ">
                                 @foreach($users as $user)
-                                    <x-display_user :user="$user" />
-                                    <div></div>
+                                    @if ($user->email != 'admin@mail.it')
+                                        <x-display_user :user="$user" />
+                                        <div></div>
+                                    @endif
+                                    
                                 @endforeach
                             </div>
                             
