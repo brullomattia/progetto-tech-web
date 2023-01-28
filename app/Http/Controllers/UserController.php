@@ -30,4 +30,11 @@ class UserController extends Controller
         return redirect()->route('quiz');;
        
     }
+
+    public function delete(){
+        $user = User::find(auth()->user()->id);
+
+        $user->delete();
+
+    }
 }

@@ -24,7 +24,7 @@ class AppController extends Controller
     public function home_admin()
     {
 
-        if(auth()->user()?->username != 'Admin' ){
+        if(auth()->user()?->email != 'admin@mail.it' ){
             abort(403);
         }
         return view('home_admin');
