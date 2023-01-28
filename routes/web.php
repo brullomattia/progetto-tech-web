@@ -64,8 +64,10 @@ Route::get('/showcase', [FrontController::class, 'showShowcase'])->name('showSho
 Route::get('/leaderboard', [FrontController::class, 'showLeaderBoard'])->name('showLeaderboard')->middleware('auth');
 
 Route::post('/store_image',[PostController::class,'store'])->name('images.store');
+Route::post('/delete/{id}',[PostController::class,'delete'])->name('post.delete');
 
 Route::post('/store_service',[ServiceController::class,'store'])->name('service.store');
+Route::post('/delete/{id}',[ServiceController::class,'delete'])->name('service.delete');
 
 Route::middleware([
     'auth:sanctum',
@@ -82,6 +84,7 @@ Route::controller(TwitterController::class)->group(function(){
     Route::get('auth/twitter/callback', 'handleTwitterCallback');
 });
 
-Route::get('/update_memory',[UserController::class,'updateMemory'])->name('update.memory');
-Route::get('/update_quiz',[UserController::class,'updateQuiz'])->name('update.quiz');
+Route::get('/delete/{id}',[UserController::class,'delete'])->name('delete.user')->middleware('auth');
+Route::get('/update_memory',[UserController::class,'updateMemory'])->name('update.memory')->middleware('auth');
+Route::get('/update_quiz',[UserController::class,'updateQuiz'])->name('update.quiz')->middleware('auth');
 

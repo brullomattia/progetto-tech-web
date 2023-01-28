@@ -29,12 +29,12 @@
                 </div>
                 <div class="deleteBtn">
                     
-                    <button class="btn">delete</button>
+                    <a href=" {{route('delete.user', $user->id)}}" class="btn">Delete</a>
                     
                 </div>
                 <div class="editBtn">
                     
-                    <button class="btn" >edit</button>
+                    <button class="btn" >Edit</button>
                     
                 </div>
                 

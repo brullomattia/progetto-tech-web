@@ -30,5 +30,15 @@ class PostController extends Controller
             return redirect()->route('showShowcase');;
            
         }
+
+        public function delete($id){
+            $post = Post::find($id);
+    
+            $post?->delete();
+    
+            return redirect()->route('showShowcase');;
+        }
+
+        
     
 }
