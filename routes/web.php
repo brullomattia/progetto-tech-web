@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,10 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 //route for creating a service
 Route::get('/service', [ServiceController::class, 'create'])->name('service')->middleware('auth');
 Route::post('/service', [ServiceController::class, 'store'])->name('service.store')->middleware('auth');
+
+//route for home_admin
+Route::get('/users_management', [AdminController::class, 'showUsers_management'])->name('showUsers_management')->middleware('auth');
+
 
 Route::get('/login', [SessionController::class, 'create'])->name('login')->middleware('guest');
 Route::post('login', [SessionController::class, 'store'])->name('login.store')->middleware('guest');
