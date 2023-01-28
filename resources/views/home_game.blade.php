@@ -130,7 +130,7 @@
 
                                 <div class="mt-4">
                                     <h1 class="text-3xl">
-                                        Quiz sugli animali!
+                                    <a href=" {{route('quiz')}}">Quiz !</a>
                                     </h1>
 
                                    

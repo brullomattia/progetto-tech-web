@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -25,7 +26,6 @@ Route::get('/', [AppController::class, 'home_game'])->name('home_game');
 Route::get('/home_front', [AppController::class, 'home_front'])->name('home_front')->middleware('auth');
 
 
-    
 
 Route::get('/memory', [GameController::class, 'memory'])->name('memory');
 Route::get('/quiz', [GameController::class, 'quiz'])->name('quiz');
@@ -40,6 +40,16 @@ Route::get('/login', [SessionController::class, 'create'])->name('login')->middl
 Route::post('login', [SessionController::class, 'store'])->name('login.store')->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 
+
+//Route for services face to face
+Route::get('/veterinario', [ServicesController::class, 'showVeterinario'])->name('showVeterinario')->middleware('auth');
+Route::get('/toelettatura', [ServicesController::class, 'showToelettatura'])->name('showToelettatura')->middleware('auth');
+Route::get('/dogSitter', [ServicesController::class, 'showDogSitter'])->name('showDogSitter')->middleware('auth');
+Route::get('/visitaDomicilio', [ServicesController::class, 'showVisitaDomicilio'])->name('showVisitaDomicilio')->middleware('auth');
+
+
+Route::get('/services', [FrontController::class, 'showServices'])->name('showServices')->middleware('auth');
+Route::get('/aggiungiServizio', [FrontController::class, 'showAggiungiServizio'])->name('showAggiungiServizio')->middleware('auth');
 Route::get('/showcase', [FrontController::class, 'showShowcase'])->name('showShowcase')->middleware('auth');
 Route::get('/leaderboard', [FrontController::class, 'showLeaderBoard'])->name('showLeaderboard')->middleware('auth');
 

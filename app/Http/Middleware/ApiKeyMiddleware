@@ -1,0 +1,13 @@
+<?php
+//questa classe è stata creata per implementare l' ApiKey
+namespace App\Http\Middleware;
+class ApiKeyMiddleware extends Middleware
+{
+  public function handle($request, Closure $next)
+  {
+    if (!$key = $request->get('api_key') || $key !== config('app.api_key')) {
+      throw new AuthenticationException('Wrong api key');
+    }
+  }
+}
+?>

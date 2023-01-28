@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
-
+    
+    //questa riga è stta aggiunta solo per l' apikey
+    'api_key' => env('API_KEY'),
     /*
     |--------------------------------------------------------------------------
     | Application Name

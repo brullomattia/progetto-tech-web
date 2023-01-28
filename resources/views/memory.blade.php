@@ -1,7 +1,6 @@
 <?php
   use App\Http\Controllers\ApiController;
 
-
   $count= 4;
   $animal= new ApiController;
   
