@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->boolean('approved');
+            $table->enum('type', ['dog_sitter','home_visit','dogs_pension']);
+            $table->boolean('approved')->default(false);
             $table->string('nome');
             $table->string('email');
             $table->string('description');
-            $table->string('telNumber');
+            $table->string('tel');
             $table->string('image');
             $table->timestamps();
         });

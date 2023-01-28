@@ -2,33 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    public function create(){
-        return view('service');
-    }
 
-    public function store(){
-        //create the service
-        $attributes = request()->validate([
-            'nome' => 'required|min:5|max:255',
-            'email' => 'required|email|min:7|max:255',
-            'description' => 'required|min:7|max:255',
-            'telNumber' => 'required|numeric|min:10',
-            'type' => 'required|min:5|max:255',
-            
-        ]);
-
-        //$attributes['password'] = bcrypt($attributes['password']);
-        $service= Service::create($attributes);
+    public function store(Request $request){
+        $data= new Service();
         
-        //log the user 
-        //auth()->login($user);
+        
 
-        return redirect('/')->with('success', 'Your service has been submitted!');
+        if($request->file('image')){
+            $file= $request->file('image');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('public/Image'), $filename);     
+            $data['image']= $filename;
+
+            $data['type'] = $request->type;
+            $data['nome'] = $request->nome;
+            $data['email'] = $request->email;
+            $data['description'] = $request->description;
+            $data['tel'] = $request->tel;
+        }
+        $data->save();
+
+        //$imageData = Post::all();
+        return redirect()->route('showAggiungiServizio');
        
     }
 }

@@ -18,15 +18,15 @@ class Service extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'image',
-        'text',
-        
-        
+        'type',
+        'approved',
+        'nome',
+        'email',
+        'description',
+        'tel',
+        'image'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
-
+    
    
 }

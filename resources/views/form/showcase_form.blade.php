@@ -20,3 +20,4 @@
                                     INSERISCI IN BACHECA
                                 </button>
                             </div>
+</form>

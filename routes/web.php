@@ -6,6 +6,7 @@ use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\UserController;
@@ -58,6 +59,9 @@ Route::get('/showcase', [FrontController::class, 'showShowcase'])->name('showSho
 Route::get('/leaderboard', [FrontController::class, 'showLeaderBoard'])->name('showLeaderboard')->middleware('auth');
 
 Route::post('/store_image',[PostController::class,'store'])->name('images.store');
+
+Route::post('/store_service',[ServiceController::class,'store'])->name('service.store');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
