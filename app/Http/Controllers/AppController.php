@@ -20,4 +20,13 @@ class AppController extends Controller
     {
         return view('home_back');
     }
+
+    public function home_admin()
+    {
+
+        if(auth()->user()?->username != 'MattiaAdmin' ){
+            abort(403);
+        }
+        return view('home_admin');
+    }
 }

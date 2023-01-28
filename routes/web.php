@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppController::class, 'home_game'])->name('home_game');
 Route::get('/home_front', [AppController::class, 'home_front'])->name('home_front')->middleware('auth');
-
+Route::get('/home_admin', [AppController::class, 'home_admin'])->name('home_admin');
 
 
 Route::get('/memory', [GameController::class, 'memory'])->name('memory');
@@ -71,3 +71,4 @@ Route::controller(TwitterController::class)->group(function(){
 
 Route::get('/update_memory',[UserController::class,'updateMemory'])->name('update.memory');
 Route::get('/update_quiz',[UserController::class,'updateQuiz'])->name('update.quiz');
+

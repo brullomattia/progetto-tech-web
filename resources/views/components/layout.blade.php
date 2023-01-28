@@ -18,6 +18,10 @@
                 <a href="/" class="text-xs font-bold uppercase">Home Page</a>
                 @auth
                     <a href="/home_front" class="text-xs font-bold uppercase ml-2.5">Home Front</a>
+                    @if (auth()->user()?->username == 'Admin' )
+                        <a href="/home_front" class="text-xs font-bold uppercase ml-2.5">Home Admin</a>
+                    @endif
+                   
                     <a  class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">Welcome, {{auth()->user()->username}}</a>
                     <form action="{{route('logout')}}" method="POST">
                         @csrf
