@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-require 'C:\Users\borgh\OneDrive\Documenti\Appunti TechWeb\Progetto Techweb\animal-app\vendor\autoload.php';
 
 
 class ApiController extends Controller
