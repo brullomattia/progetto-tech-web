@@ -31,10 +31,11 @@ class UserController extends Controller
        
     }
 
-    public function delete(){
-        $user = User::find(auth()->user()->id);
+    public function delete($id){
+        $user = User::find($id);
 
-        $user->delete();
+        $user?->delete();
 
+        return redirect()->route('showUsers_management');;
     }
 }

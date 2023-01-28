@@ -31,4 +31,12 @@ class ServiceController extends Controller
         return redirect()->route('showAggiungiServizio');
        
     }
+
+    public function delete($id){
+        $service = Service::find($id);
+
+        $service?->delete();
+
+        return redirect()->route('showShowcase');;
+    }
 }

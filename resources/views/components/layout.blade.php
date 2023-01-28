@@ -18,7 +18,7 @@
                 <a href="/" class="text-xs font-bold uppercase">Home Page</a>
                 @auth
                     <a href="/home_front" class="text-xs font-bold uppercase ml-2.5">Home Front</a>
-                    @if (auth()->user()?->username == 'Admin' )
+                    @if (auth()->user()?->email == 'admin@mail.it' )
                         <a href="/home_admin" class="text-xs font-bold uppercase ml-2.5">Home Admin</a>
                     @endif
                    
