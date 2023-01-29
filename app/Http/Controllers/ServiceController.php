@@ -10,13 +10,13 @@ class ServiceController extends Controller
 
     public function store(Request $request){
         $data= new Service();
-        
-        
+
+
 
         if($request->file('image')){
             $file= $request->file('image');
             $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('public/Image'), $filename);     
+            $file-> move(public_path('public/Image'), $filename);
             $data['image']= $filename;
 
             $data['type'] = $request->type;
@@ -29,7 +29,7 @@ class ServiceController extends Controller
 
         //$imageData = Post::all();
         return redirect()->route('showAggiungiServizio');
-       
+
     }
 
     public function delete($id){
@@ -37,7 +37,7 @@ class ServiceController extends Controller
 
         $service?->delete();
 
-        return redirect()->route('');;
+        return redirect()->route('showServices_management');
     }
 
     public function approve($id){
@@ -45,8 +45,7 @@ class ServiceController extends Controller
         if($service != null){
             $service->approved = true ;
         }
-        
-
-        return redirect()->route('');;
+        $service?->save();
+        return redirect()->route('showServices_management');
     }
 }

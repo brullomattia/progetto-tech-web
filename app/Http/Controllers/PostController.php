@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    
-        
+
+
         public function store(Request $request){
             $data= new Post();
-            
-            
+
+
 
             if($request->file('image')){
                 $file= $request->file('image');
@@ -28,17 +28,17 @@ class PostController extends Controller
 
             //$imageData = Post::all();
             return redirect()->route('showShowcase');;
-           
+
         }
 
         public function delete($id){
             $post = Post::find($id);
-    
+
             $post?->delete();
-    
-            return redirect()->route('');;
+
+            return redirect()->route('showShowcase_management');;
         }
 
-        
-    
+
+
 }

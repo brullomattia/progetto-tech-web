@@ -1,4 +1,4 @@
-<?php $users=App\Models\User::all();?>
+<?php $posts=App\Models\Post::all();?>
 <x-layout>
 
     <!doctype html>
@@ -18,7 +18,7 @@
 
                     <div class="col-span-8">
                         <div class="hidden lg:flex justify-between mb-6">
-                            <a href="/home_admin"
+                            <a href="/home_front"
                                 class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
                                 <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
                                 <g fill="none" fill-rule="evenodd">
@@ -30,31 +30,37 @@
                                     </g>
                                 </svg>
 
-                                Back to Home Admin Page
+                                Back to HomeFront Page
                             </a>
 
 
                         </div>
 
+                        <h1 class="font-semi-bold text-3xl lg:text-4xl mb-10">
+                            Bacheca Animal House
+                        </h1>
 
+                        <div class="space-y-4 lg:text-lg leading-loose">
+                            In questa pagina è possibile condividere immagini e aneddoti riguardanti gli animali con gli altri utenti del portale, apprestati a dire la tua!
+                        </div>
                     </div>
-
-                    <section class="col-span-12 mx-2.5" id="list">
+                    <section class="col-span-12 mx-2.5">
                         @auth
 
                             <div class="lg:grid lg:grid-cols-1 ">
-                                @foreach($users as $user)
-                                    @if ($user->email != 'admin@mail.it')
-                                        <x-display_user :user="$user" />
-                                        <div></div>
-                                    @endif
-
+                                @foreach($posts as $post)
+                                    <x-showcase_post_management :post="$post" />
+                                    <div></div>
                                 @endforeach
                             </div>
 
                         @endauth
 
                         </form>
+
+
+
+
                     </section>
                 </article>
             </main>
@@ -63,13 +69,3 @@
         </section>
     </body>
 </x-layout>
-<style>
-
-    body{
-    /*background-color: #C1FFC1	;*/
-    background-image:url('https://img.pixers.pics/pho_wat(s3:700/FO/60/41/55/53/700_FO60415553_842615bcb1b9fb7e97aa3a692dece3ea.jpg,700,467,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,417,jpg)/adesivi-prato-verde-e-blu-cielo.jpg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
-</style>
-

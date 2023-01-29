@@ -1,5 +1,5 @@
 <?php $services=App\Models\Service::all();
-    
+
 
 ?>
 <x-layout>
@@ -13,11 +13,11 @@
 
     <body style="font-family: Open Sans, sans-serif">
         <section class="px-6 py-8">
-            
+
 
             <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
                 <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
-                   
+
 
                     <div class="col-span-8">
                         <div class="hidden lg:flex justify-between mb-6">
@@ -36,22 +36,24 @@
                                 Back to HomeFront Page
                             </a>
 
-                          
+
                         </div>
 
-                        
+
                     </div>
 
                     <section class="col-span-12 mx-2.5" id="list">
                         @auth
-                           
+
                             <div class="lg:grid lg:grid-cols-1 ">
                                 @foreach($services as $service)
+                                @if( $service->approved==true)
                                     <x-display_services :service="$service" />
                                     <div></div>
+                                @endif
                                 @endforeach
                             </div>
-                            
+
                         @endauth
 
                         </form>
@@ -59,7 +61,7 @@
                 </article>
             </main>
 
-            
+
         </section>
     </body>
 </x-layout>

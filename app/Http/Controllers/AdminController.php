@@ -12,5 +12,8 @@ class AdminController extends Controller
     public function showServices_management(){
         return view('services_management');
     }
+    public function showShowcase_management(){
+        return view('showcase_management');
+    }
 
 }

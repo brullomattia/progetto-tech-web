@@ -44,7 +44,8 @@ Route::post('/service', [ServiceController::class, 'store'])->name('service.stor
 
 //route for home_admin
 Route::get('/users_management', [AdminController::class, 'showUsers_management'])->name('showUsers_management')->middleware('auth');
-
+Route::get('/services_management', [AdminController::class, 'showServices_management'])->name('showServices_management')->middleware('auth');
+Route::get('/showcase_management', [AdminController::class, 'showShowcase_management'])->name('showShowcase_management')->middleware('auth');
 
 Route::get('/login', [SessionController::class, 'create'])->name('login')->middleware('guest');
 Route::post('login', [SessionController::class, 'store'])->name('login.store')->middleware('guest');
@@ -64,11 +65,11 @@ Route::get('/showcase', [FrontController::class, 'showShowcase'])->name('showSho
 Route::get('/leaderboard', [FrontController::class, 'showLeaderBoard'])->name('showLeaderboard')->middleware('auth');
 
 Route::post('/store_image',[PostController::class,'store'])->name('images.store');
-Route::post('/delete/{id}',[PostController::class,'delete'])->name('post.delete');
+Route::get('/delete/post/{id}',[PostController::class,'delete'])->name('post.delete');
 
 Route::post('/store_service',[ServiceController::class,'store'])->name('service.store');
-Route::post('/delete/{id}',[ServiceController::class,'delete'])->name('service.delete');
-Route::post('/approve/{id}',[ServiceController::class,'approve'])->name('service.approve');
+Route::get('/delete/service/{id}',[ServiceController::class,'delete'])->name('service.delete')->middleware('auth');;
+Route::get('/approve/{id}',[ServiceController::class,'approve'])->name('service.approve');
 
 Route::middleware([
     'auth:sanctum',
