@@ -27,6 +27,8 @@ class ServiceController extends Controller
         }
         $data->save();
 
+        session()->flash('success', 'Il servizio è stato inserito correttamente ed è in fase di approvazione dagli admin');
+
         //$imageData = Post::all();
         return redirect()->route('showAggiungiServizio');
        

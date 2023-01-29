@@ -97,29 +97,17 @@ $email = Auth::user()->email;
                     
                 </article>
             </main>
-
+            @if (session()->has('success'))
+                <div class="fixed bg-blue-500 text-white py-3 px-4 rounded-xl bottom-3 right-3 text-sm">
+                    <p>{{ session('success') }}</p>
+                </div>
+                
+            @endif
             
         </section>
     </body>
-</x-layout>
-<script>
-  
-   async function showIsOk() {
-
-           
-            
-                document.getElementById('formSection').style.backgroundColor  ="lightgreen";
-                document.getElementById('formSection').innerHTML = "<p id='dopoInvio'> La  proposta è stata inviata correttamente! </p>"
-                console.log('descrizione ='+descrizione+'telefono ='+telefono+'email ='+email+'tipologia ='+tipologia+'nome ='+nome);
-
-                console.log('validatePhoneNumber(telefono)=  '+ validatePhoneNumber(telefono));
-            
-        }
-        
-        
-
-
-</script>
+</x-layout>  
+   
 <style>
 
 
