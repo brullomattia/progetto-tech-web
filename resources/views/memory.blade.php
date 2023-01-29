@@ -3,7 +3,7 @@
 
   $count= 4;
   $animal= new ApiController;
-  
+
   $animal1= new ApiController;
   $animal1= $animal1->getAnimal(rand(1,30));
   $animal2= new ApiController;
@@ -15,11 +15,11 @@
 
   $animal= array($animal1,$animal2,$animal3,$animal4);
 
-  
+
   $animal2= $animal;
   shuffle($animal2);
-  
-  
+
+
 ?>
 
 
@@ -30,10 +30,10 @@
 </div>
 <div class="container">
   <div class="cards">
-    
-    
+
+
     @for($i=0; $i<$count; $i++)
-      
+
       <div class="card" animal="{{$animal[$i]->name}}">
         <img src="{{$animal[$i]->image_link}}" alt="" />
       </div>
@@ -44,24 +44,24 @@
     @endfor
   </div>
 
-  
-    <a href=" {{route('memory')}}" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-10" >
+
+    <a href=" {{route('memory')}}" class="bg-green-700 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-10" >
       Restart Game!
-      
+
     </a>
-  
+
 
     @auth
-    <a id="btn" href=" {{route('update.memory')}}" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-10 hidden=true" >
+    <a id="btn" href=" {{route('update.memory')}}" class="bg-green-700 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-10 hidden=true" >
       You win, add point to Leaderboard!
-      
+
     </a>
     @endauth
 
     @guest
-    <a id="btn" href=" {{route('login')}}" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-10 hidden=true" >
+    <a id="btn" href=" {{route('login')}}" class="bg-green-700 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-10 hidden=true" >
       You win, login for update leaderboard!
-      
+
     </a>
     @endguest
 </div>
@@ -94,11 +94,11 @@ cards.forEach((card) => {
         correctCards[0].classList.remove("clicked");
         correctCards[1].classList.add("checked");
         correctCards[1].classList.remove("clicked");
-        
+
         if(score<8){
           score=score+2;
           document.getElementById('score').textContent = score;
-          
+
         }
         if(score<8){
           move++;
@@ -127,12 +127,21 @@ cards.forEach((card) => {
     }
   });
 });
-  
+
 </script>
 
 
 
 <style>
+    body{
+        background-color: #FFEC8B	;
+    }
+    .cards{
+        padding:7%;
+        background-image:url('https://media.tenor.com/yyTPHle1YdQAAAAC/homer-brain.gif');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
   * {
     margin: 0;
     padding: 0;
@@ -142,68 +151,68 @@ cards.forEach((card) => {
   #btn {
     visibility: hidden;
   }
-  
+
   .container {
     display: grid;
     place-items: center;
     max-inline-size: none;
-    
+
   }
-  
+
   .heading {
     text-align: center;
     font-family: "Poppins", sans-serif;
     font-size: 2rem;
     font-weight: 500;
   }
-  
+
   .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2em;
   }
-  
+
   .card {
     height: 180px;
     width: 130px;
-    background-color: blue;
+    background-color: #B8860B				;
     border-radius: 10px;
     display: grid;
     place-items: center;
     cursor: pointer;
     transition: 0.3s all ease;
   }
-  
+
   .card:hover {
     transform: scale(1.03);
   }
-  
+
   .card img {
     width: 80%;
     max-height: 90px;
     opacity: 0;
     transition: 0.3s all ease;
   }
-  
+
   .card.clicked {
     background-color: orange;
   }
-  
+
   .card.checked {
     background-color: lightgreen;
   }
-  
+
   .card.clicked img,
   .card.checked img {
     opacity: 1;
     pointer-events: none;
   }
-  
+
   .card.shake {
     background-color: #f15f5f;
     animation: shake 0.5s;
   }
-  
+
   @keyframes shake {
     0% {
       transform: translate(1px, 1px) rotate(0deg);
@@ -240,7 +249,7 @@ cards.forEach((card) => {
     }
   }
 </style>
-       
-           
+
+
 
 </x-layout>
