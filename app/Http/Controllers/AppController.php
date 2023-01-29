@@ -29,4 +29,15 @@ class AppController extends Controller
         }
         return view('home_admin');
     }
+
+    public function edit_user($id)
+    {
+        
+        return view('edit_user', [$id]);
+    }
+    
+    public function gestione_account(){
+        
+        return view('gestione_account');
+    }
 }

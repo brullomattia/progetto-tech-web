@@ -25,7 +25,9 @@ class RegisterController extends Controller
         //log the user 
         auth()->login($user);
 
-        return redirect('/')->with('success', 'Your account has been created!');
+        return redirect('/')->with('success', 'Il tuo account è stato creato correttamente!');
        
     }
+
+    
 }

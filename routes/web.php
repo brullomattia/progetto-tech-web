@@ -26,7 +26,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppController::class, 'home_game'])->name('home_game');
 Route::get('/home_front', [AppController::class, 'home_front'])->name('home_front')->middleware('auth');
-Route::get('/home_admin', [AppController::class, 'home_admin'])->name('home_admin');
+Route::get('/home_admin', [AppController::class, 'home_admin'])->name('home_admin')->middleware('auth');
+Route::get('/edit_user/{id}', [AppController::class, 'edit_user'])->name('edit_user')->middleware('auth');
+Route::get('/gestione_account', [AppController::class, 'gestione_account'])->name('gestione_account')->middleware('auth');
 
 
 Route::get('/memory', [GameController::class, 'memory'])->name('memory');
@@ -89,4 +91,7 @@ Route::controller(TwitterController::class)->group(function(){
 Route::get('/delete/{id}',[UserController::class,'delete'])->name('delete.user')->middleware('auth');
 Route::get('/update_memory',[UserController::class,'updateMemory'])->name('update.memory')->middleware('auth');
 Route::get('/update_quiz',[UserController::class,'updateQuiz'])->name('update.quiz')->middleware('auth');
+Route::post('/update/{id}',[UserController::class,'update'])->name('update')->middleware('auth');
+
+
 

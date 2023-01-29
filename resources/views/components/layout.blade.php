@@ -22,7 +22,7 @@
                         <a href="/home_admin" class="text-xs font-bold uppercase ml-2.5">Home Admin</a>
                     @endif
                    
-                    <a  class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">Welcome, {{auth()->user()->username}}</a>
+                    <a  href="{{route('gestione_account')}}" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5"> Gestione account </a>
                     <form action="{{route('logout')}}" method="POST">
                         @csrf
                         <button type="submit" class="text-blue-500 text-xs ml-3">
@@ -43,7 +43,7 @@
 
         <header class="max-w-xl mx-auto  text-center">
             <h1 class="text-4xl">
-                The <span class="text-blue-500">Animal House </span> 
+                The <span class="text-green-700">Animal House </span> 
             </h1>
 
             <h2 class="inline-flex mt-2">By Mattia Brullo & Marco Borghi <img src="./images/lary-head.svg"

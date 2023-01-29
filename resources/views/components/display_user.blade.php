@@ -31,9 +31,9 @@
 
                 </div>
                 <div class="editBtn">
-
-                    <button class="btn" >Edit</button>
-
+                    
+                    <a href=" {{route('edit_user', [$user->id])}}" class="btn" >Edit</a>
+                    
                 </div>
 
 
