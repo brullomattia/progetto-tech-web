@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use DOMDocument;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -57,4 +58,47 @@ class UserController extends Controller
 
         return redirect('users_management');
     }
+    public function updateUser(Request $request){   
+        
+        $user = User::find(auth()->user()->id);
+
+        request()->validate([
+            'password' => 'required|max:255',
+            'email' => 'required|email|min:7|max:255|unique:users'
+        ]);
+        
+        $user->update([
+            'email' => $request->email,
+            'updated_at' => now()
+        ]);
+
+        $user -> save();
+
+        session()->flash('success', 'Le informazioni dell utente sono state modificate con successo!');
+
+        return redirect('home_front');
+    }
+
+    public function updatePassword(Request $request){
+        
+        # Validation
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required',
+        ]);
+        //dd($request->old_password);
+
+        #Match The Old Password
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+
+
+        #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return redirect('home_front')->with("success", "Password changed successfully!");
+}
 }

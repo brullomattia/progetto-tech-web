@@ -32,7 +32,9 @@ class AppController extends Controller
 
     public function edit_user($id)
     {
-        
+        if(auth()->user()?->email != 'admin@mail.it' ){
+            abort(403);
+        }
         return view('edit_user', [$id]);
     }
     

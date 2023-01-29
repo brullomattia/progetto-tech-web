@@ -32,6 +32,11 @@ class PostController extends Controller
         }
 
         public function delete($id){
+
+            if(auth()->user()?->email != 'admin@mail.it' ){
+                abort(403);
+            }
+
             $post = Post::find($id);
 
             $post?->delete();

@@ -35,6 +35,11 @@ class ServiceController extends Controller
     }
 
     public function delete($id){
+
+        if(auth()->user()?->email != 'admin@mail.it' ){
+            abort(403);
+        }
+
         $service = Service::find($id);
 
         $service?->delete();
@@ -43,6 +48,11 @@ class ServiceController extends Controller
     }
 
     public function approve($id){
+
+        if(auth()->user()?->email != 'admin@mail.it' ){
+            abort(403);
+        }
+
         $service = Service::find($id);
         if($service != null){
             $service->approved = true ;

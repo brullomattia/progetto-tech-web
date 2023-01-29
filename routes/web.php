@@ -73,25 +73,16 @@ Route::post('/store_service',[ServiceController::class,'store'])->name('service.
 Route::get('/delete/service/{id}',[ServiceController::class,'delete'])->name('service.delete')->middleware('auth');;
 Route::get('/approve/{id}',[ServiceController::class,'approve'])->name('service.approve');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
 
-Route::controller(TwitterController::class)->group(function(){
-    Route::get('auth/twitter', 'redirectToTwitter')->name('auth.twitter');
-    Route::get('auth/twitter/callback', 'handleTwitterCallback');
-});
+
+
 
 Route::get('/delete/{id}',[UserController::class,'delete'])->name('delete.user')->middleware('auth');
 Route::get('/update_memory',[UserController::class,'updateMemory'])->name('update.memory')->middleware('auth');
 Route::get('/update_quiz',[UserController::class,'updateQuiz'])->name('update.quiz')->middleware('auth');
 Route::post('/update/{id}',[UserController::class,'update'])->name('update')->middleware('auth');
+Route::get('/update_user',[UserController::class,'updateUser'])->name('updateUser')->middleware('auth');
+Route::get('/update_password',[UserController::class,'updatePassword'])->name('updatePassword')->middleware('auth');
 
 
 
