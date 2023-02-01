@@ -1,38 +1,47 @@
-<article class="flex space-x-4 p-10 bg-gray-200 rounded-3xl my-2" id="lineArticle">
-        
-
+<article  id="lineArticle">
         <div class="box">
-                <div class="flex-shrink-0">
-                    <img src="{{ url('public/Image/'.$service->image) }}" alt="" width="200" height="200" class="">
-                </div>
 
+            <div id="left">
+
+                <div class="flex-shrink-0">
+                    <img src="{{ url('public/Image/'.$service->image) }}" alt="" width="300" height="300" id="service_img" class="">
+                </div>
+            </div>
+
+            <div id="center">
                 <div class="usernameDiv">
-                    <p class="text-xs">Username:</p>
-                    <h3 class="data"> {{$service->nome}}</h3>
-                   
-                    <p class="date">
-                        Data Annuncio:
-                        <time>{{ $service->created_at->diffForHumans() }}</time>
-                    </p>
+                    <h3 class="username"> {{$service->nome}}</h3>
                 </div>
                 <div class="emailDiv">
-                 <p class="text-xs">Email:</p>
-                    
+                    <p class="und">Email:</p>
                     <p class="data"> {{$service->email}}</p>
-                    
+
                 </div>
+                <div class="telDiv">
+                    <p class="und">tel:</p>
+                    <p class="data"> {{$service->tel}}</p>
+
+                </div>
+                <div class="date">
+                    <p class="und"> Data Annuncio:</p>
+                    <time>{{ $service->created_at->diffForHumans() }}</time>
+
+                </div>
+
+            </div>
+
+            <div id="right">
                 <div class="type">
-                    <p class="text-xs">Servizio:</p>
-                    <h3 class="data"> {{$service->type}}</h3>
-                
+                    <h3 id="serviceType"> {{$service->type}}</h3>
+
                 </div>
                 <div class="description">
                     <p class="data">{{$service->description}}</p>
-                    
-                
                 </div>
-                
-               
+
+            </div>
+
+
         </div>
  </article>
  <style>
@@ -41,39 +50,52 @@
     width:100%;
 	flex-direction: row;
 	flex-wrap: wrap;
-    
+    opacity: 1;
+
 }
-.text-xs{
-    font-style:italic;
-    width:50%;
-    border-bottom:1px solid blue; 
-    
+
+.username {
+    font-size:25px;
+    font-weight:bold;
+    color:rgb(190, 3, 3);
 }
-.date{
-    font-style:italic;
-    font-size:7;
-    
+#serviceType{
+    border-bottom: 2px solid red;
+    font-size:35px;
+    font-weight:bold;
+    color:rgb(190, 3, 3);
+}
+#right{
+    flex:2;
+    border-left: 2px solid red;
+    padding-left:3%;
+}
+#center{
+    flex:1;
+padding:2%;
+}
+#left{
+flex:1;
+padding:0%;
 }
 #lineArticle{
     box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    margin:1%;
+    padding:0.5%;
+    background: rgba(255, 255, 255, 0.5);
+
 }
 
-.usernameDiv{
-    flex:2;
-    
+
+#service_img{
+border: 2px solid red;
+
+
 }
-.type{
-    flex:1;
-    margin-left:5%;
-   
-}
-.description{
-    flex:1;
-    margin-left:5%;
-   
-}
-.emailDiv{
-    flex:1;
+.und{
+text-decoration:underline;
+    font-size:10px;
+
 }
 
 </style>

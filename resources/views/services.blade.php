@@ -2,7 +2,7 @@
 
 
 ?>
-<x-layout>
+<x-layout2>
 
     <!doctype html>
 
@@ -16,31 +16,20 @@
 
 
             <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
+                <div class="top">
+
+                        <div id="backtohome">
+                            <a href=" {{route('home_front')}}"  class="bg-red-600 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-10" >
+                        Back to home page!
+
+                            </a>
+                        </div>
+                  </div>
                 <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
 
 
-                    <div class="col-span-8">
-                        <div class="hidden lg:flex justify-between mb-6">
-                            <a href="/home_front"
-                                class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
-                                <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
-                                <g fill="none" fill-rule="evenodd">
-                                        <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
-                                        </path>
-                                        <path class="fill-current"
-                                            d="M13.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z">
-                                        </path>
-                                    </g>
-                                </svg>
-
-                                Back to HomeFront Page
-                            </a>
 
 
-                        </div>
-
-
-                    </div>
 
                     <section class="col-span-12 mx-2.5" id="list">
                         @auth
@@ -64,5 +53,17 @@
 
         </section>
     </body>
-</x-layout>
+</x-layout2>
+<style>
+
+.top{
+            text-align: center;
+            margin-bottom:2%;
+        }
+        body{
+    background-image:url('/images/dogSitter.jpg');
+    background-repeat:repeat;
+    background-size: cover;
+}
+    </style>
 

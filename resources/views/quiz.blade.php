@@ -1,10 +1,10 @@
-<?php use App\Http\Controllers\ApiController; 
+<?php use App\Http\Controllers\ApiController;
 
 
 function createMatrix(){
     $nomiAnimali = array('Cat','Dog','Wolf','Mouse','Parrot','Rabbit','Hamster','Chicken','Cow','Horse','Lion','Tiger',
         'Leopard','Jaguar','Octopus','Camel','Shark','Duck','Eagle','Snake','Bear','Fox');
-    $risposte=array();    
+    $risposte=array();
     shuffle($nomiAnimali);
     $i=0;
     $j=0;
@@ -20,11 +20,11 @@ function createMatrix(){
                 else{
                     $risposte = fillMatrix($risposte,$animal);
                 }
-                
+
                 if($j==21){$j=0;}else{$j++;}
                 $i++;
-                
-                
+
+
         } while (!isFull($risposte));
         stampa($risposte);
 
@@ -35,37 +35,37 @@ function createMatrix(){
          return  $risposte;
 }
 
-function fillMatrix($m,$a){ 
+function fillMatrix($m,$a){
         for ($i = 1;  $i<=7 ; $i ++) {
                 $giaPresente=false;
                 for ($j = 0;  $j<4 ; $j ++) {
                     if($m[$j][$i]==$a[$i]){
-                        $giaPresente=true;  
+                        $giaPresente=true;
                     }
                 }
                 if(!$giaPresente){
                     for ($j = 0;  $j<4; $j ++) {
                         if(($m[$j][$i]==' ')&&($a[$i]!=' ')){
-                            $m[$j][$i]=$a[$i]; 
+                            $m[$j][$i]=$a[$i];
                             $a[$i]=' ';
-                            
+
                         }
-                    } 
+                    }
                 }
         }
         return $m;
-    
+
 }
-             
+
 function stampa($m){
            for ($j = 0;  $j<count($m) ; $j ++) {
             echo "<script>console.log('nuova riga ');</script>";
             for ($i = 1;  $i<=7 ; $i ++) {
                 echo "<script>console.log('".$m[$j][$i]."');</script>";
-                
+
             }
         }
-        
+
 }
 function isFull($m){
     $result= True;
@@ -75,7 +75,7 @@ function isFull($m){
                 $result = false;
                 break;
              }
-                
+
             }
         }
         return $result;
@@ -84,12 +84,22 @@ $risposte = createMatrix();
 
 ?>
 
-<x-layout>
- 
+<x-layout2>
 
-        <div class="contenitore"> 
+
+        <div class="contenitore">
+            <div class="top">
+
+                    <div id="backtohome">
+                        <a href=" {{route('home_game')}}"  class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-10" >
+                    Back to home page!
+
+                        </a>
+                    </div>
+              </div>
+
         <div id="finishGame">
-            
+
             <a id="reload" href=" {{route('quiz')}}" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-5 hidden=true" >
                 Game Over Try Again!
             </a>
@@ -119,9 +129,9 @@ $risposte = createMatrix();
         </div>
 
        <div id="core">
-            
+
             <div id="punteggio">
-                <p class=" text-xl my-2">Risposte corrette:</p>
+                <p id="rispCorrette" class=" text-xl my-2">Risposte corrette:</p>
                 <p id="NumMosse">0</p>
             </div>
             <div class="domanda">
@@ -132,17 +142,17 @@ $risposte = createMatrix();
 
             </div>
             <div id="scelte">
-                <p id="primo" onclick="rispostaSelezionata(id)"></p>
-                <p id="secondo" onclick="rispostaSelezionata(id)"></p>
-                <p id="terzo" onclick="rispostaSelezionata(id)"></p>
-                <p id="quarto" onclick="rispostaSelezionata(id)"></p>
+                <p  id="primo" onclick="rispostaSelezionata(id)"></p>
+                <p  id="secondo" onclick="rispostaSelezionata(id)"></p>
+                <p  id="terzo" onclick="rispostaSelezionata(id)"></p>
+                <p  id="quarto" onclick="rispostaSelezionata(id)"></p>
             </div>
        </div>
 
-       
-        
-       
-       <!-- 
+
+
+
+       <!--
        <div class="domanda">
             <button onclick="next()" id="continua">Continua</button>
        </div>
@@ -151,7 +161,7 @@ $risposte = createMatrix();
 
 <script>
             //var risposta0, risposta1, risposta2, risposta3;
-        var arrDomande = ["What is the name of this animal?", "What is the lifespan of this animal?", "What is the maximum length of this animal ?", "What is the maximum weight of this animal?", 
+        var arrDomande = ["What is the name of this animal?", "What is the lifespan of this animal?", "What is the maximum length of this animal ?", "What is the maximum weight of this animal?",
         "What is the habitat of this animal?", "What are/is the geographic location of this animal?", "What is the diet of this animal?"];
         var arrRisposte = [];
         var arrRisposteIni = [];
@@ -160,38 +170,25 @@ $risposte = createMatrix();
         var tentataRisp = false;
         var score = 0;
         var animalJSON = <?php echo json_encode($risposte); ?>;
-        
-        async function test($string){
-            for (var i = 0;  i<=3 ; i ++) {
-                console.log('Nuovo animale js dentro '+$string);
-                for (var j = 0;  j<=7 ; j ++) { 
-                    console.log(animalJSON[i][j]);
-                
-        
-            }}
-        }
-        
+
+
         animalRequest(0);
         document.getElementById('finishGame').style.display = 'none';
         document.getElementById('winGame').style.display = 'none';
-        
+
         async function next(){
-            console.log('i vale '+ i);
-            console.log('externalIndex vale '+ externalIndex);
-            test('next');
             animalRequest(i);
             tentataRisp = false;
         }
 
         async function animalRequest(i) {
-            console.log('iterazione animalRequest() dove i vale '+ i);
-             animalPresent(animalJSON, i);       
+             animalPresent(animalJSON, i);
         }
 
         var externalIndex;
 
         async function animalPresent(animalJSON, i) {
-            
+
             var diverso = true;
             if(i == 0){
                 document.getElementById("img").src= animalJSON[i][0];
@@ -201,10 +198,8 @@ $risposte = createMatrix();
                //inserirla nel paragrafo domandaCorrente
                 document.getElementById('domandaCorrente').textContent = arrDomande[index];
                 externalIndex = index;
-                //console.log('externalIndex vale '+ externalIndex);
-                test('animalpresent=0');
+
             }
-            if(i == 3){ test('animalpresenti=3');}
             //mettere in  arrRisposteIni[] alla prima posizione la risposta giusta alla domanda selezionata
             switch(externalIndex){
                 case 0:
@@ -227,13 +222,12 @@ $risposte = createMatrix();
                     break;
                 case 6:
                     arrRisposteIni[i] = animalJSON[i][7];
-                    break;  
+                    break;
             }
 
             //se esiste almeno una risoposta in arrRisposte, che è uguale alla risposta corrente in arrRisposteIni
             for(var j = 0; j < arrRisposte.length; j++){
                 if(arrRisposte[j] == arrRisposteIni[i]){
-                    console.log('arrRisposte[j] == arrRisposteIni[i] ->'+ arrRisposte[j]+"="+ arrRisposteIni[i]);
                     diverso = false;
                     break;
                 }
@@ -244,9 +238,9 @@ $risposte = createMatrix();
             }
 
             if(i == 3){
-                assegnaRisposta(); 
-            } 
-            
+                assegnaRisposta();
+            }
+
             if(diverso){
                 i++;
             }
@@ -256,10 +250,10 @@ $risposte = createMatrix();
         }
 
 
-        //mettere gli elementi in arrRisposteIni[0] nel file html, in modo casuale, si fa quando i = 3  
+        //mettere gli elementi in arrRisposteIni[0] nel file html, in modo casuale, si fa quando i = 3
         async function assegnaRisposta(){
             var arr = [];
-            var index = 0; 
+            var index = 0;
             //mi salvo le posizioni in un array metto dei numeri casuali da 1 a 4 nell' array
             while(index < 4){
                 var random = Math.floor(Math.random() * 4);
@@ -276,7 +270,7 @@ $risposte = createMatrix();
                         id[i] = "primo";
                         break;
                     case 1:
-                        id[i] = "secondo";  
+                        id[i] = "secondo";
                         break;
                     case 2:
                         id[i] = "terzo";
@@ -300,13 +294,16 @@ $risposte = createMatrix();
         function rispostaSelezionata(idCorrente){
             if(!tentataRisp){
                 if(document.getElementById(idCorrente).textContent == arrRisposteIni[0]){
-                    //risposta giusta 
+                    //risposta giusta
                     document.getElementById(idCorrente).style.backgroundColor = 'rgb(1, 195, 1)';
                     score++;
                     document.getElementById('NumMosse').textContent = score;
-                
+
                     if(score==3){
                         document.getElementById('winGame').style.display = 'flex';
+                        document.getElementsByTagName('body')[0].style.backgroundImage="url('images/pirlo.gif')" ;
+
+
                     }else{
                         setTimeout(() => {
                     next();
@@ -314,29 +311,30 @@ $risposte = createMatrix();
                     }
                 }
                 else{
-                    //risposta sbagliata 
+                    //risposta sbagliata
                     document.getElementById(idCorrente).style.backgroundColor = 'red';
                     document.getElementById(id[0]).style.backgroundColor = 'rgb(1, 195, 1)';
                     document.getElementById('finishGame').style.display = 'flex';
-                   // document.getElementById('gameOver').style.display = 'block';
+                    document.getElementsByTagName('body')[0].style.backgroundImage="url('images/wrongAnswer.gif')" ;
+                    document.getElementsByTagName('body')[0].style.backgroundRepeat="repeat";
                     document.getElementById('NumMosse').value = score;
                     //document.getElementById('NumMosse').style.display = 'none';
-                } 
+                }
             }
             tentataRisp = true;
         }
- 
+
 </script>
 </html>
-    
-</x-layout>
+
+</x-layout2>
 
 <style>
-   
+
         body {
-        
-        
-        background-repeat: no-repeat;
+
+           background-image:url('images/milionario.gif');
+        background-repeat: repeat;
         background-size: cover;
         height: 50%;
         /* width: 100%; */
@@ -350,6 +348,7 @@ $risposte = createMatrix();
 
         #contenitore {
         display: flex;
+
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -369,9 +368,12 @@ $risposte = createMatrix();
         }
 
 
-
+        .top{
+            text-align: center;
+            margin-bottom:2%;
+        }
         #scelte > p {
-        /* background-color: yellow; */
+         background-color: rgb(63, 199, 226);
         padding: 5px;
         border: 3px solid cornflowerblue;
         border-radius: 5px;
@@ -380,11 +382,21 @@ $risposte = createMatrix();
         #img {
         width: 500px;
         height: 500px;
-        border: 3px solid cornflowerblue;
+        border: 3px solid blue;
         border-radius: 20px;
         background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
         }
+        #domandacorrente  {
+        background-color: rgb(11, 70, 82);
+        padding: 5px;
+        border: 3px solid rgb(5, 15, 35);
+        border-radius: 5px;
+        color:white;
 
+        }
+        #rispCorrette , #NumMosse{
+            color:white;
+        }
         .domanda {
         margin: auto;
         /* width: 50%; */

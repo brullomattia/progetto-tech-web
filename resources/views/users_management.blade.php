@@ -1,5 +1,5 @@
 <?php $users=App\Models\User::all();?>
-<x-layout>
+<x-layout2>
 
     <!doctype html>
 
@@ -12,69 +12,111 @@
         <section class="px-6 py-8">
 
 
-            <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
-                <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
+            <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6" id="main">
+                <article >
 
 
-                    <div class="col-span-8">
-                        <div class="hidden lg:flex justify-between mb-6">
-                            <a href="/home_admin"
-                                class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
-                                <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
-                                <g fill="none" fill-rule="evenodd">
-                                        <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
-                                        </path>
-                                        <path class="fill-current"
-                                            d="M13.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z">
-                                        </path>
-                                    </g>
-                                </svg>
+                    <div class="top">
 
-                                Back to Home Admin Page
+                        <div id="backtohome">
+                            <a href=" {{route('home_admin')}}"  class="bg-green-700 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-10" >
+                        Back to admin home page!
+
                             </a>
-
-
                         </div>
-
-
                     </div>
 
-                    <section class="col-span-12 mx-2.5" id="list">
-                        @auth
+                    <table class="table-auto w-full mb-6" id="table">
+                        <thead>
+                            <tr>
 
-                            <div class="lg:grid lg:grid-cols-1 ">
-                                @foreach($users as $user)
-                                    @if ($user->email != 'admin@mail.it')
-                                        <x-display_user :user="$user" />
-                                        <div></div>
-                                    @endif
+                                <th class="px-4 py-2">Username</th>
+                                <th class="px-4 py-2">email</th>
+                                <th class="px-4 py-2">Memroy Points</th>
+                                <th class="px-4 py-2">Quiz Points</th>
 
-                                @endforeach
-                            </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($users as $user)
+                            @if ($user->email != 'admin@mail.it')
+                                <tr>
 
-                        @endauth
+                                    <td class="border-2 border-green-800 px-4 py-2">{{ $user->username }}</td>
+                                    <td class="border-2 border-green-800 px-4 py-2">{{ $user->email }}</td>
+                                    <td class="border-2 border-green-800 px-4 py-2">{{ $user->memory_points }}</td>
+                                    <td class="border-2 border-green-800 px-4 py-2">{{ $user->quiz_points }}</td>
+                                    <td class="border-2 border-red-700 px-4 py-2 " id="delete">
+                                        <a href=" {{route('delete.user', $user->id)}}" class="btn">Delete</a></td>
+                                    <td class="border-2 border-green-800 px-4 py-2" id="edit">
+                                        <a href=" {{route('edit_user', [$user->id])}}" class="btn" >Edit</a></td>
 
-                        </form>
-                    </section>
+                                </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+
+
                 </article>
             </main>
             @if (session()->has('success'))
                 <div class="fixed bg-blue-500 text-white py-3 px-4 rounded-xl bottom-3 right-3 text-sm">
                     <p>{{ session('success') }}</p>
                 </div>
-                
+
             @endif
 
         </section>
     </body>
-</x-layout>
+</x-layout2>
 <style>
 
     body{
-    /*background-color: #C1FFC1	;*/
-    background-image:url('https://img.pixers.pics/pho_wat(s3:700/FO/60/41/55/53/700_FO60415553_842615bcb1b9fb7e97aa3a692dece3ea.jpg,700,467,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,417,jpg)/adesivi-prato-verde-e-blu-cielo.jpg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+
+    background-color: #C1FFC1	;
     }
+    .top{
+            flex:1;
+            text-align: center;
+            margin-bottom:2%;
+
+        }
+        #table{
+            flex:1;
+        }
+        #main{
+            display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+        }
+        #edit{
+
+            margin:0px;
+            padding:0px;
+            background-color:rgb(6, 97, 54);
+            padding-left:1%;
+
+
+        }
+
+
+        #delete {
+
+        margin:0px;
+        padding:0px;
+        background-color:rgb(185, 8, 8);
+        padding-left:1%;
+
+
+}
+
+
+        .btn{
+            color:white;
+
+            border:0px;
+
+        }
 </style>
 

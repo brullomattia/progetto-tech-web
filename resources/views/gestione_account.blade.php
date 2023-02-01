@@ -1,9 +1,9 @@
 <x-layout>
     <section class="px-6 py-8">
         <main class="max-w-lg mx-auto mt-10 bg-gray-100 border-gray-200">
-            
+
             @if (auth()->user()->email != 'admin@mail.it')
-            <h1 class="text-center font-bold ">MODIFICA EMAIL</h1>
+            <h1 class="text-center font-bold "> EMAIL</h1>
             <form method="get" action="/update_user">
                 @csrf
 
@@ -24,17 +24,17 @@
 
                 </div>
 
-                
 
-                
+
+
                 <div class="mb-6">
                     <button type="submit" class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
                         style="background: #1E9DEA; padding: 10px; width: 100%; text-align: center; display: block; border-radius:4px; color: #ffffff;">
-                        Modifica Email
+                         Email
                     </button>
                 </div>
 
-            
+
         </form>
         @endif
 
@@ -50,12 +50,12 @@
                 <input class="border border-gray-400 p-2 w-full" type="password" name="old_password" id="password"
                     required>
 
-                   
+
 
             </div>
 
 
-            
+
 
             <div class="mb-6">
                 <label class="block mb-2 uppercase font-bold text-xs text-gray-700">
@@ -65,7 +65,7 @@
                 <input class="border border-gray-400 p-2 w-full" type="password" name="new_password" id="password"
                     required>
 
-               
+
 
             </div>
 
@@ -77,8 +77,8 @@
             </div>
 
         </form>
-            
-            
+
+
 
         </main>
     </section>
@@ -87,7 +87,13 @@
                 <div class="fixed bg-red-500 text-white py-3 px-4 rounded-xl bottom-3 right-3 text-sm">
                     <p>{{ session('error') }}</p>
                 </div>
-                
+
             @endif
 
 </x-layout>
+<style>
+body{
+    background-color:rgb(242, 242, 54);
+}
+    </style>
+

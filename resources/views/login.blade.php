@@ -5,24 +5,24 @@
 
             <form method="post" action="/login">
             @csrf
-            
 
-            
+
+
 
             <div class="mb-6">
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Email
                     </label>
 
-                    <input 
+                    <input
                         class="border border-gray-400 p-2 w-full"
                         type="text"
                         name="email"
                         id="email"
                         value="{{ old('email') }}"
                         required
-                        
-                        
+
+
                     >
 
                     @error('email')
@@ -36,16 +36,16 @@
                         Password
                     </label>
 
-                    <input 
+                    <input
                         class="border border-gray-400 p-2 w-full"
                         type="password"
                         name="password"
                         id="password"
-            
+
                         required
-                        
-                       
-                        
+
+
+
                     >
 
                     @error('password')
@@ -63,14 +63,21 @@
                 </button>
             </div>
 
-           
-            
-            
+
+
+
 
 
 
             </form>
 
-        </main>    
+        </main>
     </section>
 </x-layout>
+<style>
+    body{
+        background-color:rgb(242, 242, 54);
+    }
+
+
+</style>

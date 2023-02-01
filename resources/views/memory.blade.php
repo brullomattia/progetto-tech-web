@@ -23,13 +23,22 @@
 ?>
 
 
-<x-layout>
-<div>
-  <h1 class="font-semibold"> Punteggio : <p id="score">0</p> </h1>
-  <h1 class="font-semibold"> Mosse : <p id="move">0</p> </h1>
-</div>
+<x-layout2>
+
 <div class="container">
-  <div class="cards">
+
+    <div class="top">
+        <div class="points">
+        <h1 class="font-semibold"> Punteggio : <span id="score">0 </span></h1><h1>  Mosse : <span id="move">0</span> </h1>
+        </div>
+        <div id="backtohome">
+        <a href=" {{route('home_game')}}"  class="bg-green-700 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 my-10" >
+            Back to home page!
+
+          </a></div>
+      </div>
+
+    <div class="cards">
 
 
     @for($i=0; $i<$count; $i++)
@@ -134,13 +143,21 @@ cards.forEach((card) => {
 
 <style>
     body{
-        background-color: #FFEC8B	;
-    }
-    .cards{
-        padding:7%;
-        background-image:url('https://media.tenor.com/yyTPHle1YdQAAAAC/homer-brain.gif');
-        background-repeat: no-repeat;
+        /*background-color: #FFEC8B	;*/
+        background-image:url('images/homer.gif');
+       /* background-repeat: no-repeat;*/
         background-size: cover;
+    }
+    .points{
+        flex:3;
+        margin-left:3%;
+    }
+    #backtohome{
+        flex:1;
+        margin-right:3%;
+
+        color:yellow;
+
     }
   * {
     margin: 0;
@@ -164,6 +181,16 @@ cards.forEach((card) => {
     font-family: "Poppins", sans-serif;
     font-size: 2rem;
     font-weight: 500;
+  }
+  .top{
+
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+    margin-bottom:4%;
+    color:white;
+
+    width:100%;
   }
 
   .cards {
@@ -252,4 +279,4 @@ cards.forEach((card) => {
 
 
 
-</x-layout>
+</x-layout2>

@@ -22,19 +22,19 @@
                         <a href="/home_admin" class="text-xs font-bold uppercase ml-2.5">Home Admin</a>
                     @endif
 
-                    <a  href="{{route('gestione_account')}}" class="bg-green-700 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5"> Gestione account </a>
+                    <a  href="{{route('gestione_account')}}" class="bg-red-600 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5"> Gestione account </a>
                     <form action="{{route('logout')}}" method="POST">
                         @csrf
-                        <button type="submit" class="text-green-700 text-xs ml-3">
+                        <button type="submit" class="text-red-700 text-xs ml-3">
                             Log Out
                         </button>
                     </form>
                 @else
-                    <a href="{{route('login')}}" class="bg-green-700 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    <a href="{{route('login')}}" class="bg-red-600 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                         Login
                     </a>
 
-                    <a href="{{route('register')}}" class="bg-green-700 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    <a href="{{route('register')}}" class="bg-red-600 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                         Register
                     </a>
                 @endauth
@@ -42,9 +42,8 @@
         </nav>
 
         <header class="max-w-xl mx-auto  text-center">
-            <h1 class="text-4xl">
-                The <span class="text-green-700">Animal House </span>
-            </h1>
+
+            <img src="./images/animalHouse.png">
 
             <h2 class="inline-flex mt-2">By Mattia Brullo & Marco Borghi <img src="./images/lary-head.svg"
                                                                alt="Head of Lary the mascot"></h2>
@@ -59,3 +58,12 @@
 
     </section>
 </body>
+<style>
+    /*
+
+<h1 class="text-4xl">
+                The <span class="text-green-700">Animal House </span>
+            </h1>
+    */
+
+    </style>
